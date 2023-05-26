@@ -1,5 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Mamba.Areas.AdminPanel.ViewModels;
+@using Mamba.Models
+@model UpdateEmployeeVM
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Employee</h4>
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <img src="~/assets/img/team/@Model.Image" />
+                    <label asp-for="Photo">Photo</label>
+                    <input asp-for="Photo" placeholder="Photo">
+                    <span asp-validation-for="Photo"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Photo">Name</label>
+                    <input asp-for="Name" placeholder="Name" value="@Model.Name">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input asp-for="Description" placeholder="Description" value="@Model.Description">
+                    <span asp-validation-for="Description"></span>
+                </div>
+                <div class="form-group">
+                    <select asp-for="PositionId">
+                        @foreach (Position position in ViewBag.Positions)
+                        {
+                            <option value="@position.Id">@position.Name</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,57 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Mamba.Models;
+@model List<Employee>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <a class="btn btn-success "asp-action="create" asp-controller="employee">Create Employee</a>
+            <p class="card-description">
+                Add class <code>.table-striped</code>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Image
+                            </th>
+                            <th>
+                               Name
+                            </th>
+                            <th>
+                               Position
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(Employee employee in Model){  
+                         <tr>
+                            <td class="py-1">
+                                <img src="~/assets/img/team/@employee.Image" alt="image" />
+                            </td>
+                            <td>
+                                @employee.Name
+                            </td>
+                            <td>
+                                @employee.Position.Name
+                            </td>
+                            <td>
+                               @employee.Description
+                            </td>
+                            <td>
+                              <a class="btn btn-warning" asp-controller="employee" asp-action="update" asp-route-id="@employee.Id">Update</a>
+                                    <a class="btn btn-secondary" asp-controller="employee" asp-action="delete" asp-route-id="@employee.Id">Delete</a>
+                            </td>
+                            
+                        </tr>}
+                        
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
